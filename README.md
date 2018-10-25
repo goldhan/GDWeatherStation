@@ -1,5 +1,7 @@
 # ESP8266 OLED WeatherStationServer
 
+## 注意！！！ __在完善整理中......__
+
 ## 文件结构
 
 ``` shell
