@@ -28,8 +28,8 @@ def start():
     weather.getWeather()
     weather.uploadWeather()
 
-    weather.getQiuShi()
-    weather.uploadQiuShi()
+#     weather.getQiuShi() 
+#     weather.uploadQiuShi()
 
 
 

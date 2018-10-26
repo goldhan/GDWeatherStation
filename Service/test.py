@@ -23,8 +23,9 @@ from urllib import request
 # str16 = ''
 
 # print (strArr)
+# 5f67cea40b16ca231d849068efcf337ab13479c8   GDWeatherStation token
 context = ssl._create_unverified_context()
-url = 'https://gist.githubusercontent.com/goldhan/56361bcede3a7051463fd5cc5ab44b5b/raw/65c61c4114c5ddfa717f112657f8299be4598045/cloudSettings'
+url = 'https://raw.githubusercontent.com/goldhan/GDWeatherStation/master/Service/userData.json'
 # self.heWeatherAPI = 'https://free-api.heweather.com/v5/weather?city=' + self.city + '&key=' + self.heWeatherKey + '&lang=EN'
 with request.urlopen(url,context=context) as f:
     data = f.read()

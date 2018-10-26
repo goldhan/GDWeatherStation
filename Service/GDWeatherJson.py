@@ -36,11 +36,12 @@ class GDWeatherJson():
             self.data2yeelikJson()
 
     def uploadWeather(self):
-        yeelinkReq = request.Request(self.heWeatherYeelinkAPI)
-        yeelinkReq.add_header('U-ApiKey', self.yeelinkKey)
-        yeelinkReq.add_header('content-type', 'application/json')
-        with request.urlopen(yeelinkReq,data= bytes(self.heWeatherDic,'utf8')) as f:
-            self.uploadSuccess(f, ' HeWeather')
+        
+        # yeelinkReq = request.Request(self.heWeatherYeelinkAPI)
+        # yeelinkReq.add_header('U-ApiKey', self.yeelinkKey)
+        # yeelinkReq.add_header('content-type', 'application/json')
+        # with request.urlopen(yeelinkReq,data= bytes(self.heWeatherDic,'utf8')) as f:
+        #     self.uploadSuccess(f, ' HeWeather')
 
     def getQiuShi(self):
         qiuShiReq = request.Request(self.qiuShiAPI)
