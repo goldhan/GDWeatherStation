@@ -1,6 +1,6 @@
 import datetime
 import ntplib
-import ssl
+import ssl, time
 from urllib import request
 # import base64
 # import curses
@@ -25,9 +25,12 @@ from urllib import request
 # print (strArr)
 # 5f67cea40b16ca231d849068efcf337ab13479c8   GDWeatherStation token
 context = ssl._create_unverified_context()
-url = 'https://raw.githubusercontent.com/goldhan/GDWeatherStation/master/Service/userData.json'
+url = 'https://raw.githubusercontent.com/goldhan/MockJSON/master/GDWeather.json'
 # self.heWeatherAPI = 'https://free-api.heweather.com/v5/weather?city=' + self.city + '&key=' + self.heWeatherKey + '&lang=EN'
-with request.urlopen(url,context=context) as f:
-    data = f.read()
-    jsonStr = data.decode('utf-8')
-    print(jsonStr)
+
+while 1:
+    with request.urlopen(url,context=context) as f:
+        data = f.read()
+        jsonStr = data.decode('utf-8')
+        print(jsonStr)
+        time.sleep(60)
