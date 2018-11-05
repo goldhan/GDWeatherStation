@@ -1,10 +1,37 @@
 # coding=utf-8
-import GDParseJson,ssl,json,datetime,sys
+import GDParseJson, ssl,json, datetime, sys, git, os, sys, shutil
 from GDUserData import UserJSON
 from urllib import request
 
+filePath = os.path.abspath(sys.argv[0])
+filePathArr = filePath.split('/')
+del filePathArr[len(filePathArr)-1]
+filePath = '/'.join(filePathArr)
 
-class GDWeatherJson():
+class UploadWithGit(object):
+
+    def __init__(self, filePath, url):
+        self.filePath = filePath + '/GDWeatherStation'
+        isHave = os.path.exists(self.filePath)
+        print(self.filePath)
+        if isHave:
+            shutil.rmtree(self.filePath) 
+            print('删除旧文件，重新Clone新文件')
+        self.repo = git.Repo.clone_from(url, self.filePath, branch='master')
+        self.filePath = self.filePath + '/GDWeather.json'
+
+    def upload(self, jsonStr):
+        # self.filePath = self.filePath + '/GDWeather.json'
+        with open(self.filePath, 'w') as f:
+            f.write(jsonStr)
+            f.close()
+        index = self.repo.index
+        index.add(['GDWeather.json'])
+        index.commit('this is GDWeatherStationSever push......')
+        self.repo.remote().push()
+        print('push successful')
+
+class GDWeatherJson(object):
 
     heWeatherKey = ''
     city = ''
@@ -27,6 +54,8 @@ class GDWeatherJson():
         self.jsonParse = GDParseJson.GDJson()
         self.time = datetime.datetime
         self.userJson = UserJSON()
+        gitUrl = 'https://github.com/goldhan/MockJSON.git'
+        self.upGit = UploadWithGit(filePath,gitUrl)
 
     def getWeather(self):
         self.heWeatherAPI = 'https://free-api.heweather.com/v5/weather?city=' + self.city + '&key=' + self.heWeatherKey + '&lang=EN'
@@ -36,7 +65,7 @@ class GDWeatherJson():
             self.data2yeelikJson()
 
     def uploadWeather(self):
-        
+        self.upGit.upload(self.heWeatherDic)
         # yeelinkReq = request.Request(self.heWeatherYeelinkAPI)
         # yeelinkReq.add_header('U-ApiKey', self.yeelinkKey)
         # yeelinkReq.add_header('content-type', 'application/json')
@@ -72,8 +101,6 @@ class GDWeatherJson():
 
     def data2yeelikJson(self):
         self.heWeatherDic = self.jsonParse.parseHeWeather(self.heWeatherData)
-        self.heWeatherDic['key'] = self.yeelinkKey
-
         self.userJson.LoadPush()
 
         self.heWeatherDic['value']['title'] = self.userJson.title

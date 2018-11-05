@@ -1,14 +1,8 @@
 {
-"city" : "shenzhen",
-"heWeatherKey" : "c11c89bfcf864c2f867d6e3c82b375d1",
-"yeelinkKey" : "c85bd9d844646649b69a6476d53cae6f",
-"heWeatherYeelinkAPI" : "http://api.yeelink.net/v1.0/device/355774/sensor/402747/datapoints",
-"qiushiYeelinkAPI" : "http://api.yeelink.net/v1.0/device/355774/sensor/403001/datapoints",
-"bitMapYeelinkAPI1" : "http://api.yeelink.net/v1.0/device/355774/sensor/403427/datapoints",
-"bitMapYeelinkAPI2" : "http://api.yeelink.net/v1.0/device/355774/sensor/403428/datapoints",
-"pushYeelinkAPI": "http://api.yeelink.net/v1.0/device/355774/sensor/403002/datapoints",
-"qiuShiAPI": "http://m2.qiushibaike.com/article/list/text?count=5&page=1",
-  "title":"about me",
-  "detail":"qq:634824726    have a good Day! This is my first push!"
+  "city": "shenzhen",
+  "heWeatherKey": "c11c89bfcf864c2f867d6e3c82b375d1",
+  "qiuShiAPI": "http://m2.qiushibaike.com/article/list/text?count=5&page=1",
+  "title": "about me",
+  "detail": "qq:634824726    have a good Day! This is my first push!"
 
 }

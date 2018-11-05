@@ -1,5 +1,12 @@
-import os,json
-patch = os.getcwd()
+import os,json,sys
+
+filePath = os.path.abspath(sys.argv[0])
+filePathArr = filePath.split('/')
+del filePathArr[len(filePathArr)-1]
+filePath = '/'.join(filePathArr)
+
+patch = filePath
+
 class UserJSON():
 
     jsonPatch = patch + '/userData.json'

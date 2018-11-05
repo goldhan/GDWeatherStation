@@ -43,7 +43,7 @@ def waitTime(sec):
 
 while True:
     start()
-    waitTime(30)
+    waitTime(10)
     sys.stdout.write('\r')
     sys.stdout.flush()
 
