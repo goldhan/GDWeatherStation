@@ -5,48 +5,20 @@ filePathArr = filePath.split('/')
 del filePathArr[len(filePathArr)-1]
 filePath = '/'.join(filePathArr)
 
-patch = filePath
+Path = filePath
 
-class UserJSON():
-
-    jsonPatch = patch + '/userData.json'
-    # pushPatch = patch + '/pushMessage.json'
-    city = ''
-    heWeatherKey = ''
-    yeelinkKey = ''
-    heWeatherYeelinkAPI = ''
-    qiushiYeelinkAPI = ''
-    pushYeelinkAPI = ''
-    qiuShiAPI = ''
-    bitMapYeelinkAPI1 = ''
-    bitMapYeelinkAPI2 = ''
-    title = ''
-    detail = ''
+class UserJSON(object):
 
     def __init__(self):
-        pass
-
+        self.Load()
 
     def Load(self):
-        with open(self.jsonPatch, 'r') as f:
+        self.jsonPath = Path + '/userData.json'
+        with open(self.jsonPath, 'r') as f:
             self.userJson = json.load(f)
         self.city = self.userJson['city']
+        self.gitUrl = self.userJson['gitUrl']
         self.heWeatherKey = self.userJson['heWeatherKey']
-        self.yeelinkKey = self.userJson['yeelinkKey']
-        self.heWeatherYeelinkAPI = self.userJson['heWeatherYeelinkAPI']
-        self.qiushiYeelinkAPI = self.userJson['qiushiYeelinkAPI']
-        self.pushYeelinkAPI = self.userJson['pushYeelinkAPI']
         self.qiuShiAPI = self.userJson['qiuShiAPI']
-        self.bitMapYeelinkAPI1 = self.userJson['bitMapYeelinkAPI1']
-        self.bitMapYeelinkAPI2 = self.userJson['bitMapYeelinkAPI2']
         self.title = self.userJson['title']
         self.detail = self.userJson['detail']
-
-
-    def LoadPush(self):
-        with open(self.jsonPatch, 'r') as f:
-            self.userJson = json.load(f)
-        self.title = self.userJson['title']
-        self.detail = self.userJson['detail']
-        # with open(self.pushPatch,'r') as f:
-        #     return json.load(f)
