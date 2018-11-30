@@ -212,7 +212,7 @@ void u8g2Begin()
 
 int sec = 0;
 int num = 0;
-void GDStart(char *yeelinkKey, char *url)
+void GDStart(char *fingerprint, char *url)
 {
     int y = 16;
     if (sec == 5)
@@ -282,7 +282,7 @@ void GDStart(char *yeelinkKey, char *url)
     {
         if (num == 10)
         {
-            GDWeatherGet(yeelinkKey, url, true);
+            GDWeatherGet(fingerprint, url, true);
 
             num = 0;
         }

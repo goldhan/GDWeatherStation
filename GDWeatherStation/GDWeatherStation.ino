@@ -2,19 +2,23 @@
 
 void setup()
 {
-    char ssid[] = "ChinaNet-toto"; // wifi ssid
-    char password[] = "hanjin117"; // wifi password
-    char apiKey[] = "c85bd9d844646649b69a6476d53cae6f"; // yeelink apiKey
-    char url[] = "http://api.yeelink.net/v1.0/device/355774/sensor/402747/datapoints"; // yeelink url
+    char ssid[] = "jhyt"; // wifi ssid
+    char password[] = "jhytkds888"; // wifi password
+    char url[] = "https://raw.githubusercontent.com/goldhan/MockJSON/master/GDWeather.json"; // git url
+    // SHA1 fingerprint of the certificate  
+    //把你需要调用的请求地址用浏览器访问，然后打开调试工具选择“安全”即可看到对应请求的fingerprint，复制到这个地方即可
+    char fingerprint[] = "CC AA 48 48 66 46 0E 91 53 2C 9C 7C 23 2A B1 74 4D 29 9D 33"; 
     Serial.begin(115200);
     u8g2Begin();
-    GDWifiBegin(ssid, password, apiKey, url);
+    GDWifiBegin(ssid, password, fingerprint, url);
 
     // theFirst();
 }
 void loop()
 {
-    char apiKey[] = "c85bd9d844646649b69a6476d53cae6f"; // yeelink apiKey
-    char url[] = "http://api.yeelink.net/v1.0/device/355774/sensor/402747/datapoints"; // yeelink url
-    GDStart(apiKey, url);
+    // SHA1 fingerprint of the certificate  
+    //把你需要调用的请求地址用浏览器访问，然后打开调试工具选择“安全”即可看到对应请求的fingerprint，复制到这个地方即可
+    char fingerprint[] = "CC AA 48 48 66 46 0E 91 53 2C 9C 7C 23 2A B1 74 4D 29 9D 33";
+    char url[] = "https://raw.githubusercontent.com/goldhan/MockJSON/master/GDWeather.json"; // git url
+    GDStart(fingerprint, url);
 }

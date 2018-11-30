@@ -124,13 +124,13 @@ void jsonParse(String j, bool isFirst)
   netStartUI("JsonParse Successful!", 100, isFirst);
 }
 
-void GDWeatherGet(char *yeelinkKey, char *url, bool isFirst)
+void GDWeatherGet(char *fingerprint, char *url, bool isFirst)
 {
   netStartUI("Start Http Get!", 0, isFirst);
   HTTPClient http;
-  http.begin(url);
-  http.addHeader("Content-Type", "text/html; charset=UTF-8");
-  http.addHeader("U-ApiKey", yeelinkKey);
+  http.begin(url, fingerprint);
+  // http.addHeader("Content-Type", "text/css");
+  // http.addHeader("U-ApiKey", yeelinkKey);
   netStartUI("Start Http Get!", 10, isFirst);
   if (http.GET() == 200)
   {
@@ -138,6 +138,8 @@ void GDWeatherGet(char *yeelinkKey, char *url, bool isFirst)
     Serial.println("Get succ End");
     netStartUI("Http Get Successful!", 20, isFirst);
     String j = http.getString();
+    // Serial.println(j);
+    // Serial.println("********");
     http.end();
     jsonParse(j, isFirst);
   }
@@ -146,11 +148,14 @@ void GDWeatherGet(char *yeelinkKey, char *url, bool isFirst)
     netStartUI("Start Http Get FAIL!!", 20, isFirst);
     Serial.println("Get Fail......    code:");
     Serial.println(http.GET());
+    String j = http.getString();
+    // Serial.println(j);
+    // Serial.println("********");
     http.end();
   }
 }
 WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, "58.220.207.226", 3600 * 8, 30);
+NTPClient timeClient(ntpUDP, "202.112.29.82", 3600 * 8, 30);
 void NTPRequest(bool isFirst)
 {
   timeClient.update();
@@ -170,7 +175,7 @@ void NTPRequest(bool isFirst)
   strcpy(weather.time, times);
 }
 
-void GDWifiBegin(char *SSID, char *PASSWORD, char *yeelinkKey, char *url)
+void GDWifiBegin(char *SSID, char *PASSWORD, char *fingerprint, char *url)
 {
   netStartUI("WiFi Connection......", 0, true);
   Serial.println(SSID);
@@ -191,5 +196,5 @@ void GDWifiBegin(char *SSID, char *PASSWORD, char *yeelinkKey, char *url)
   netStartUI("WiFi Connected!", 100, true);
   timeClient.begin();
   NTPRequest(true);
-  GDWeatherGet(yeelinkKey, url, true);
+  GDWeatherGet(fingerprint, url, true);
 }
