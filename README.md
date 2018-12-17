@@ -217,8 +217,8 @@ url 地址是git里面可以直接访问json的地址，一般都是以 `https:/
 ### UI 展示
 
 ![01](/UI_Design/weather1.png)
-![02](/img/weather2.png)
-![03](/img/Gweather3.png)
+![02](/UI_Design/weather2.png)
+![03](/UI_Design/weather3.png)
 
 具体源文件 [Sketch](https://github.com/goldhan/GDWeatherStation/tree/master/UI_Design)
 
