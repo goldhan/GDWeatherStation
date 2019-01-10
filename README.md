@@ -63,6 +63,8 @@ cover: /img/GDWeatherStation/UI_0.png
 - __可选__ usb 下载器
     > 有些 ESP8266 没有自带 usb下载功能，需要自己买个usb下载器，进行程序烧录
 
+> 本人ESP32开发版，使用的是 M5Stick core，自带电池，12864，很方便，如果使用其他的开发版，可能需要修改GDWifi里 `U8G2_SH1107_64X128_1_4W_HW_SPI u8g2(U8G2_R1, 14,27,33);`,不同的屏幕，驱动芯片不一样。
+
 ### 环境准备
 
 - Arduino IDE
