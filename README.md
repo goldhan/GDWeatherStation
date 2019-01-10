@@ -1,7 +1,8 @@
 ---
-title: 教你用 ESP8266 做一个天气预报 GDWeatherStation
+title: 教你用 ESP8266 / ESP32 做一个天气预报 GDWeatherStation
 date: 2018-12-17 10:00:00
 tags: 
+    - ESP32
     - ESP8266 
     - 12864
     - Arduino
@@ -9,7 +10,7 @@ tags:
 cover: /img/GDWeatherStation/UI_0.png
 ---
 
-# 教你用 ESP8266 做一个天气预报 GDWeatherStation
+# 教你用 ESP8266 / ESP32 做一个天气预报 GDWeatherStation
 
 ## 大纲
 
@@ -38,7 +39,7 @@ cover: /img/GDWeatherStation/UI_0.png
 
 ### 最终效果说明
 
-> 通过ESP8266连接WIFI访问网络获取天气，网络时间，自定义的信息，然后进行显示
+> 通过ESP8266 / ESP32 连接WIFI访问网络获取天气，网络时间，自定义的信息，然后进行显示
 
 ### 需要了解的技术栈
 
@@ -54,9 +55,9 @@ cover: /img/GDWeatherStation/UI_0.png
 
 ### 硬件准备
 
-- ESP8266 模块
+- ESP8266 OR ESP32 模块
     > 注意 ESP8266 模块有差别，但是基本都是一样的，需要注意引脚定义
-- 12864 OLED 模块 i2c接口
+- 12864 OLED 模块 i2c接口 OR SPI
     > 当然也可以使用SPI接口，只是需要更改 Arduino程序代码即可
 - 连接线若干
 - __可选__ usb 下载器
@@ -74,7 +75,7 @@ cover: /img/GDWeatherStation/UI_0.png
 
 #### Arduino IDE 需要的库
 
-> 具体怎么去安装库，请自行百度，关键字：Arduino 添加库，__Arduino 添加ESP8266支持__
+> 具体怎么去安装库，请自行百度，关键字：Arduino 添加库，__Arduino 添加ESP8266支持__、__Arduino 添加ESP32支持__
 
 ``` C
 #include <NTPClient.h>
@@ -146,6 +147,7 @@ cover: /img/GDWeatherStation/UI_0.png
 
 - ~~目前糗事百科接口都是中文，但是ESP8266 上的程序不支持中文（不知道有没有英语版的类似糗事百科的接口~~
 - ~~还是中文中文中文！~~
+- ESP32支持中文
 
 #### 注意
 
@@ -153,6 +155,7 @@ cover: /img/GDWeatherStation/UI_0.png
 - 请严格的按照json文件里的格式进行填写，不要乱加多余的空格或者其他不必要的字符。
 - 注意定义推送消息不要多，因为屏幕显示区域有限
 - 因为对应的ESP8266 端的程序不支持中文，所以请用英语写推送消息。
+- ESP32支持中文显示，可以用中文写自定义的推送消息
 
 ## Arduino端
 
