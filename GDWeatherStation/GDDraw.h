@@ -31,7 +31,15 @@ void side_status(bool isOK)
 void str(const char *string, int x, int yy, int y, const uint8_t *font)
 {
     u8g2.setFont(font);
-    u8g2.drawStr(x, yy - y, string);
+    u8g2.setCursor(x, yy - y);
+    u8g2.print(string);
+    // u8g2.drawStr(x, yy - y, string);
+}
+
+void strNoFont(const char *string, int x, int yy, int y)
+{
+    u8g2.setCursor(x, yy - y);
+    u8g2.print(string);
 }
 void side_temperature(bool isRefresh)
 {
@@ -56,7 +64,7 @@ void Time(bool isMes, bool isR, int time)
     {
         str("*", 4, 21, 0, u8g2_font_roentgen_nbp_t_all);
     }
-    str(weather.time, 14, 19, 0, u8g2_font_trixel_square_tn);
+    str(Time_c.time, 14, 19, 0, u8g2_font_trixel_square_tn);
 }
 
 void rectangle(int y)
@@ -138,7 +146,7 @@ void icon(int x, int yy, int y, int statu)
 void TodyTime(int y)
 {
     str(weather.tody.date, 15, 60, y, u8g2_font_lucasfont_alternate_tr);
-    str(weather.time, 15, 50, y, u8g2_font_courB18_tn);
+    str(Time_c.time, 15, 50, y, u8g2_font_courB18_tn);
     str(weather.now, 15, 17, y, u8g2_font_helvR10_tr);
     if (weather.tody.cod >= 300)
     {
@@ -175,12 +183,18 @@ void Two(int y)
 
 void Message(int y)
 {
+    //  u8g2_font_wqy12_t_gb2312
+    //  u8g2_font_lucasfont_alternate_tr
+    if (y == 0 )
+    {
+        u8g2.setFont(u8g2_font_wqy12_t_gb2312);
+    }
     rectangle(y);
-    str(weather.title, 41, 20, y, u8g2_font_lucasfont_alternate_tr);
-    str(weather.detail1, 15, 32, y, u8g2_font_lucasfont_alternate_tr);
-    str(weather.detail2, 15, 42, y, u8g2_font_lucasfont_alternate_tr);
-    str(weather.detail3, 15, 52, y, u8g2_font_lucasfont_alternate_tr);
-    str(weather.detail4, 15, 62, y, u8g2_font_lucasfont_alternate_tr);
+    strNoFont(weather.title, 41, 20, y);
+    strNoFont(weather.detail1, 15, 32, y);
+    strNoFont(weather.detail2, 15, 44, y);
+    strNoFont(weather.detail3, 15, 56, y);
+    strNoFont(weather.detail4, 15, 68, y);
     // str(weather.detail5, 15, 37, y, u8g2_font_lucasfont_alternate_tr);
 }
 
@@ -206,6 +220,7 @@ void baseUI(int dotNum, int dotSec, bool isMes, bool isShow, bool isRefresh)
 void u8g2Begin()
 {
     u8g2.begin();
+    u8g2.enableUTF8Print();
     u8g2.setFlipMode(1);
     u8g2.setColorIndex(1);
 }
@@ -214,14 +229,13 @@ int sec = 0;
 int num = 0;
 void GDStart(char *fingerprint, char *url)
 {
-    int y = 16;
+    int y = 2;
     if (sec == 5)
     {
         sec = 0;
     }
     do
     {
-
         u8g2.firstPage();
         do
         {
@@ -271,7 +285,7 @@ void GDStart(char *fingerprint, char *url)
         {
             break;
         }
-        y += 16;
+        y += 2;
     } while (y <= 64);
 
     if (sec != 4)
@@ -281,7 +295,7 @@ void GDStart(char *fingerprint, char *url)
     else
     {
         if (num == 10)
-        {
+        {   
             GDWeatherGet(fingerprint, url, true);
 
             num = 0;
