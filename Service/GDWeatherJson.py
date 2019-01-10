@@ -101,9 +101,8 @@ class GDWeatherJson(object):
         if len(strArr) < 5:
             for i in range(0,5-len(strArr)):
                 strArr.append('')
-
         self.heWeatherDic['value']['detail'] = strArr
-        self.heWeatherDic = json.dumps(self.heWeatherDic)
+        self.heWeatherDic = json.dumps(self.heWeatherDic,ensure_ascii=False)
         print(self.heWeatherDic)
 
     # def data2QiuShiJson(self):
