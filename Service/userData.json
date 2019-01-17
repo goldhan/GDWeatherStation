@@ -1,8 +1,0 @@
-{
-  "city": "xingtai",
-  "heWeatherKey": "c11c89bfcf864c2f867d6e3c82b375d1",
-  "qiuShiAPI": "http://m2.qiushibaike.com/article/list/text?count=5&page=1",
-  "gitUrl": "https://github.com/goldhan/MockJSON.git",
-  "title": "关于我",
-  "detail": " 推送测试"
-}
